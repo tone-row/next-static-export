@@ -1,4 +1,15 @@
 {
   "name": "@tone-row/next-static-export",
-  "version": "0.2.0"
+  "version": "0.2.0",
+  "description": "comprehensive static export from next.js apps",
+  "license": "MIT",
+  "repository": "tone-row/next-static-export",
+  "main": "index.js",
+  "bin": "./script.js",
+  "keywords": [
+    "tiny",
+    "npm",
+    "package",
+    "bamblehorse"
+  ]
 }
