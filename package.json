@@ -7,9 +7,12 @@
   "main": "index.js",
   "bin": "./script.js",
   "keywords": [
-    "tiny",
-    "npm",
-    "package",
-    "bamblehorse"
+    "next",
+    "next-js",
+    "static",
+    "export",
+    "compile",
+    "ssg",
+    "generator"
   ]
 }
