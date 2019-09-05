@@ -1,0 +1,4 @@
+"static": "STATIC_EXPORT=1 STATIC_EXPORT_DATA=1 STATIC_EXPORT_PAGES=1 node script.js",
+"static:cleanup": "STATIC_CLEANUP=1 node script.js",
+"static:data": "STATIC_EXPORT=1 STATIC_EXPORT_DATA=1 node script.js",
+"static:pages": "STATIC_EXPORT=1 STATIC_EXPORT_PAGES=1 node script.js"

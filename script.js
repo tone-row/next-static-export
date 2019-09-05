@@ -1,7 +1,11 @@
+#! /usr/bin/env node
+
 const fs = require('fs');
 const path = require('path');
 const isProd = process.env.NODE_ENV === 'production';
-const { exportPathMap } = require('./next.config');
+const { exportPathMap } = require(path.resolve(process.cwd(), 'next.config'));
+const fileExtension = process.env.STATIC_EXTENSION || 'js';
+const reuseData = process.env.STATIC_REUSE_DATA || 0;
 
 // Settings
 const DATA_DIRECTORY = './data';
@@ -12,16 +16,18 @@ async function createEmptyDir() {
   if (!fs.existsSync(DATA_DIRECTORY)) {
     fs.mkdirSync(DATA_DIRECTORY);
   } else {
-    // remove files from directory
-    fs.readdir(DATA_DIRECTORY, (err, files) => {
-      if (err) throw err;
-
-      for (const file of files) {
-        fs.unlink(path.join(DATA_DIRECTORY, file), err => {
-          if (err) throw err;
-        });
-      }
-    });
+    if (!reuseData) {
+      // remove files from directory
+      fs.readdir(DATA_DIRECTORY, (err, files) => {
+        if (err) throw err;
+  
+        for (const file of files) {
+          fs.unlink(path.join(DATA_DIRECTORY, file), err => {
+            if (err) throw err;
+          });
+        }
+      });
+    }
   }
 }
 
@@ -71,13 +77,14 @@ async function exportData() {
   );
 
   for (const path of staticPaths) {
+    console.log(`Static compilation of ${path}`)
     const { static, page, query } = exportPaths[path];
     const { filename, getInitialProps } = static;
 
     // If the path doesn't exist temporarily create it by copying the page
-    if (path !== `/` && !fs.existsSync(`pages${path}.js`)) {
-      const pageToCopy = page === '/' ? 'pages/index.js' : `pages${page}.js`;
-      const newPath = `pages${path}.js`;
+    if (path !== `/` && !fs.existsSync(`pages${path}.${fileExtension}`)) {
+      const pageToCopy = page === '/' ? 'pages/index.${fileExtension}' : `pages${page}.${fileExtension}`;
+      const newPath = `pages${path}.${fileExtension}`;
       const success = await copyToPath(pageToCopy, newPath);
       // add it to tmp pages
       if (success) {

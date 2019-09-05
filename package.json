@@ -1,15 +1,15 @@
 {
   "name": "@tone-row/next-static-export",
-  "version": "0.5.0",
+  "version": "0.6.0",
   "description": "comprehensive static export from next.js apps",
   "license": "MIT",
   "repository": "tone-row/next-static-export",
-  "main": "index.js",
+  "main": "lib/index.js",
   "bin": {
-    "static": "STATIC_EXPORT=1 STATIC_EXPORT_DATA=1 STATIC_EXPORT_PAGES=1 node script.js",
-    "static:cleanup": "STATIC_CLEANUP=1 node script.js",
-    "static:data": "STATIC_EXPORT=1 STATIC_EXPORT_DATA=1 node script.js",
-    "static:pages": "STATIC_EXPORT=1 STATIC_EXPORT_PAGES=1 node script.js"
+    "next-export-static": "script.js"
+  },
+  "scripts": {
+    "build": "NODE_ENV=production rollup -c"
   },
   "keywords": [
     "next",
@@ -19,5 +19,18 @@
     "compile",
     "ssg",
     "generator"
-  ]
+  ],
+  "devDependencies": {
+    "@babel/core": "^7.5.5",
+    "@babel/preset-env": "^7.5.5",
+    "@babel/preset-react": "^7.0.0",
+    "rollup": "^1.20.3",
+    "rollup-plugin-babel": "^4.3.3",
+    "rollup-plugin-commonjs": "^10.1.0",
+    "rollup-plugin-node-resolve": "^5.2.0",
+    "rollup-plugin-replace": "^2.2.0"
+  },
+  "peerDependencies": {
+    "react": ">= 16.x.x"
+  }
 }
