@@ -94,7 +94,7 @@ async function exportData() {
       }
     }
 
-    if (process.env.STATIC_EXPORT_DATA) {
+    if (process.env.STATIC_EXPORT_DATA && !reuseData) {
       const data = await getInitialProps({ query });
       fs.writeFileSync(
         `${DATA_DIRECTORY}/${filename}.json`,

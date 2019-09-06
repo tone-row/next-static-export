@@ -6,5 +6,6 @@ This package creates a workflow for a more comprehensive static export from next
 
 TODO
 
-1. Figure out how to route "data" folder properly, possibly a config option that's passed in.
+1. Figure out how to route "data" folder properly, possibly a config option that's passed in. Do this so that you can actually export withAPI from this repo
 2. Don't compile the withAPI HOC because it needs to receive runtime instructions about the current environment to behave correctly.
+3. Add a way to work with already created data files for faster static phasing

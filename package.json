@@ -1,6 +1,6 @@
 {
   "name": "@tone-row/next-static-export",
-  "version": "0.6.0",
+  "version": "0.7.0",
   "description": "comprehensive static export from next.js apps",
   "license": "MIT",
   "repository": "tone-row/next-static-export",
